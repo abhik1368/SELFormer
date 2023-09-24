@@ -6,6 +6,9 @@ import to_selfies
 
 
 def smiles_to_selfies(df):
+    from pandarallel import pandarallel
+    import to_selfies
+    import pandas as pd
     df.insert(0, "selfies", df["smiles"])
     pandarallel.initialize()
     df.selfies = df.selfies.parallel_apply(to_selfies.to_selfies)
